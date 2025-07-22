@@ -74,7 +74,6 @@ export const CategorySidebar = ({
 
   return (
     <div className="space-y-2">
-      {/* All Products Option */}
       <button
         onClick={() => onSelectCategory(null)}
         className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-300 flex items-center gap-3 ${
@@ -96,15 +95,11 @@ export const CategorySidebar = ({
             d="M19 11H5m14-7l2 2-2 2m0 0H9.236a2 2 0 01-1.789-1.106L3 4m12 13h-1m0 0l-2-2m2 2l-2 2"
           />
         </svg>
-        <span className="font-medium">Tutti i Prodotti</span>
+        <span className="font-medium">All products</span>
       </button>
-
-      {/* Category Divider */}
       <div className="my-4">
         <div className="h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-600 to-transparent"></div>
       </div>
-
-      {/* Categories */}
       {categories.map((cat) => {
         const isSelected = selectedCategory === cat
 
