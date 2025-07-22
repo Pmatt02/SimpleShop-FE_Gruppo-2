@@ -1,10 +1,15 @@
 import './App.css'
-
+import { BrowserRouter as Router, Routes } from "react-router-dom";
+import { productDetailRoutes } from "./routes/productDetailRoutes";
 function App() {
 
   return (
     <>
-     <div className='border border-red-500'>contenuto</div> 
+     <Router>
+    <Routes>
+      {productDetailRoutes}
+    </Routes>
+  </Router>
     </>
   )
 }
