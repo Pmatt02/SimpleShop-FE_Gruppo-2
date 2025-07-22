@@ -1,13 +1,14 @@
-import './App.css'
+// App.tsx
+import '../src/index.css'
 import { Home } from './pages/Home'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <>
-      <div>
-        <Home />
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/category/:category" element={<Home />} />
+    </Routes>
   )
 }
 
