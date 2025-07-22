@@ -1,4 +1,3 @@
-// src/components/ProductCard.tsx
 import type { Product } from '../types'
 import { useNavigate } from 'react-router-dom'
 
