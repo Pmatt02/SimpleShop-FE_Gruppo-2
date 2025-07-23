@@ -37,11 +37,8 @@ export const PageCarrello = () => {
         <p className="text-xl font-semibold">
           Totale: €{totaleImporto().toFixed(2)}
         </p>
-        <Link
-          to=""
-          className="inline-block mt-4 bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
-        >
-          Checkout
+        <Link to="" className="inline-block mt-4 bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+        Checkout
         </Link>
       </div>
     </div>
