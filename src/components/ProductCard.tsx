@@ -30,8 +30,11 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
       </p>
 
       <button
-        onClick={() => onAddToCart(product)}
-        className="mt-auto group relative px-6 py-3 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-semibold rounded-full hover:from-violet-600 hover:to-fuchsia-600 transition-all duration-300 shadow-md"
+        onClick={() => {
+          onAddToCart(product)
+          alert('Prodotto aggiunto al carrello')
+        }}
+        className="mt-auto group relative px-6 py-3 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-semibold rounded-full hover:from-violet-600 hover:to-fuchsia-600 transition-all duration-300 shadow-md cursor-pointer transition"
       >
         Add to Cart
         <div className="absolute inset-0 rounded-full blur-xl opacity-30 bg-gradient-to-r from-violet-400 to-fuchsia-400 group-hover:opacity-50 transition-opacity duration-300"></div>
