@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import type { Product } from '../types'
 import { ProductCard } from '../components/ProductCard'
 import { CategorySidebar } from '../components/CategorySidebar'
+import { ContextCarrello } from '../context/ContextCarrello'
+import { FaShoppingCart } from 'react-icons/fa'
+
 
 export const Home = () => {
   const [products, setProducts] = useState<Product[]>([])
@@ -11,6 +14,8 @@ export const Home = () => {
   const [loading, setLoading] = useState<boolean>(true)
   const { category } = useParams()
   const navigate = useNavigate()
+  const { aggiungiProdotto } = useContext(ContextCarrello)
+
 
   const fetchProducts = async () => {
     setLoading(true)
@@ -212,12 +217,12 @@ export const Home = () => {
                       <h1 className="text-4xl lg:text-5xl font-black bg-gradient-to-r from-violet-800 via-fuchsia-700 to-cyan-600 bg-clip-text text-transparent">
                         {category
                           ? category
-                              .split(' ')
-                              .map(
-                                (word) =>
-                                  word.charAt(0).toUpperCase() + word.slice(1)
-                              )
-                              .join(' ')
+                            .split(' ')
+                            .map(
+                              (word) =>
+                                word.charAt(0).toUpperCase() + word.slice(1)
+                            )
+                            .join(' ')
                           : 'All products'}
                       </h1>
                       <p className="text-violet-600/80 text-xl font-medium">
@@ -228,15 +233,21 @@ export const Home = () => {
                       </p>
                     </div>
 
-                    {category && (
-                      <div className="hidden sm:flex items-center">
-                        <span className="px-6 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-full text-lg font-bold shadow-xl capitalize border border-white/20">
-                          {category}
-                        </span>
-                      </div>
-                    )}
-                  </div>
+                    <div className="flex items-center gap-4">
+                      <FaShoppingCart
+                        onClick={() => navigate('/carrello')}
+                        className="text-4xl text-violet-700 hover:text-fuchsia-600 cursor-pointer transition"
+                      />
 
+                      {category && (
+                        <div className="hidden sm:flex items-center">
+                          <span className="px-6 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-full text-lg font-bold shadow-xl capitalize border border-white/20">
+                            {category}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                   <div className="h-2 bg-gradient-to-r from-violet-500 via-fuchsia-500 to-cyan-500 rounded-full mb-12 shadow-lg"></div>
                 </div>
 
@@ -255,15 +266,14 @@ export const Home = () => {
                         <div className="relative bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl hover:shadow-violet-500/25 border border-violet-200/50 overflow-hidden transition-all duration-500 group-hover:border-violet-300">
                           <ProductCard
                             product={product}
-                            onAddToCart={(p) =>
-                              console.log('Aggiunto al carrello:', p)
-                            }
+                            onAddToCart={aggiungiProdotto}
                           />
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
+
 
                 {products.length === 0 && !loading && (
                   <div className="text-center py-20">

@@ -1,10 +1,10 @@
 import { createContext, useState } from 'react'
-import type { Products } from '../types/products'
+import type { Product } from '../types'
 import type { ReactNode } from 'react'
 
 export interface ContextTypeCarrello {
-  products: Products[]
-  aggiungiProdotto: (item: Products) => void
+  products: Product[]
+  aggiungiProdotto: (item: Product) => void
   rimuoviProdotto: (id: number) => void
   svuotaCarrello: () => void
   totaleImporto: () => number
@@ -13,11 +13,11 @@ export interface ContextTypeCarrello {
 export const ContextCarrello = createContext<ContextTypeCarrello>(
   {} as ContextTypeCarrello
 )
-export type ProdottoNelCarrello = Products & { quantity: number }
+export type ProdottoNelCarrello = Product & { quantity: number }
 export const ProviderCarrello = ({ children }: { children: ReactNode }) => {
   const [products, aggiornaCarrello] = useState<ProdottoNelCarrello[]>([])
 
-  const aggiungiProdotto = (prodotto: Products) => {
+  const aggiungiProdotto = (prodotto: Product) => {
     aggiornaCarrello((valoreAttuale: ProdottoNelCarrello[]) => {
       const trovato = valoreAttuale.find((p) => p.id === prodotto.id)
 
